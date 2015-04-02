@@ -1,0 +1,12 @@
+Hello! Here are some rules to playing BlackJack on this system.
+Make sure that each player is aware it is their turn, so
+if it is Player 1 turn then only player 1 should look at the screen.
+This is used for precausion to keep the hand secretive to the player.
+
+
+
+Commands
+D/d - draw
+H/h - hold
+
+Goodluck :)
