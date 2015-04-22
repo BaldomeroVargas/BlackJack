@@ -2,6 +2,9 @@
 #include <vector>
 #include <iostream>
 #include <algorithm> 
+#include <chrono>
+#include <random>
+#include <array>
 
 using namespace std;
 
@@ -30,7 +33,9 @@ void Card::ace(int num){
 }
 
 //creates a 52 card deck
-Deck::Deck(){
+Deck::Deck() 
+    :shuffle_seed(chrono::system_clock::now().time_since_epoch().count()) {
+        
     string faces[] = {"Ace", "Deuce", "Trey", "Four", "Five", "Six", "Seven", 
     "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
     string suits[] = {"Diamonds", "Hearts", "Clubs", "Spades"};
@@ -57,8 +62,8 @@ void Deck::printDeck(){
 }
 
 //shuffles deck
-void Deck::shuffle(){
-    random_shuffle(c.begin(),c.end());    
+void Deck::shuffle_deck(){
+    std::shuffle(c.begin(),c.end(), default_random_engine(shuffle_seed));    
 }
 
 //draws top card

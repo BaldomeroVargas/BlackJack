@@ -60,7 +60,7 @@ int main(int argc, char* argv[]){
     
     //creates and shuffles the deck
     Deck game_deck; 
-    game_deck.shuffle();
+    game_deck.shuffle_deck();
     
     //keeps track of number of cards drawn
     int number_drawn = 0;

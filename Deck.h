@@ -26,14 +26,14 @@ class Deck
 {
     private:
         vector<Card> c;
-    
+        unsigned shuffle_seed;
     public:
         //Deck default constructor
         Deck();
         //prints deck
         void printDeck();
         //shuffles deck
-        void shuffle();
+        void shuffle_deck();
         //draws a card
         Card draw_card(int &totDrawn);
     
