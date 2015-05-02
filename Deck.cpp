@@ -35,7 +35,7 @@ void Card::ace(int num){
 //creates a 52 card deck
 Deck::Deck() 
     :shuffle_seed(chrono::system_clock::now().time_since_epoch().count()) {
-        
+    
     string faces[] = {"Ace", "Deuce", "Trey", "Four", "Five", "Six", "Seven", 
     "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
     string suits[] = {"Diamonds", "Hearts", "Clubs", "Spades"};

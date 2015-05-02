@@ -22,8 +22,8 @@ void sort_display(vector<Player> & final, vector<Player> & p, int players);
 int main(int argc, char* argv[]){
     
     //checks command line arguements
-    if(argc != 2){
-        cout << "Program usage: ./black.out rules.txt" << endl;
+    if(argc != 1){
+        cout << "Program usage: ./black.out" << endl;
         return 1;        
     }
     
@@ -33,25 +33,6 @@ int main(int argc, char* argv[]){
     //secures response to play or not
     //and gets players
     get_players(response, players);
-    
-    //rules to the players
-    ifstream inFS;
-    
-    cout << "Opening rules file " << argv[1] << endl << endl;
-    //checks if input file is already open
-    inFS.open(argv[1]); // opening file
-    if(!inFS.is_open()){
-        cout << "Could not open file " << argv[1] << "." << endl;
-        return 1;
-    }
-    
-    //calls rules file and outputs
-    do{
-        string rules;        
-        getline(inFS, rules); 
-        cout << rules << endl;
-    }while(inFS.good());
-    cout << endl;
     
     vector<Player> p; 
     

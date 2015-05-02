@@ -20,5 +20,5 @@ clean:
 	rm -fv Interface.o Player.o Deck.o black.out
 	
 run:
-	./black.out rules.txt
+	./black.out
 	
