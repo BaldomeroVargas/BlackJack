@@ -43,7 +43,7 @@ void Player::display_hand(){
 void Player::player_hand(Card current){
     //work on this!
     if(handTotal == 0){
-        if(current.val_return() == 1){
+        if(current.val_return() == 0){
             cout << "You have drawn "; current.printCard(); cout << endl;           
             int num;   
             do{
@@ -57,7 +57,7 @@ void Player::player_hand(Card current){
         update_player_hand(current);        
     }
     else{
-        if(current.val_return() == 1){
+        if(current.val_return() == 0){
             cout << "You have drawn "; current.printCard(); cout << endl;           
             int num;   
             display_hand();

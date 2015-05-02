@@ -19,7 +19,12 @@ Card::Card(string cardFace, string cardSuit, int cardValue){
 
 //prints card face and suit
 void Card::printCard(){
-    cout << face << " of " << suit << " (" << value << ")" << endl;    
+    if(value == 0){
+        cout << face << " of " << suit << endl;    
+    }
+    else{
+        cout << face << " of " << suit << " (" << value << ")" << endl;      
+    }
 } 
 
 //returns card value
@@ -42,7 +47,11 @@ Deck::Deck()
     for(int i = 0; i < 4; ++i){
         string suitTemp = suits[i];
         for(int j = 0; j < 13; ++ j){
-            if(j > 8){
+            if(j == 0){
+                string faceTemp = faces[j];                
+                c.push_back(Card(faceTemp, suitTemp, j));                
+            }
+            else if(j > 8){
                 string faceTemp = faces[j];
                 c.push_back(Card(faceTemp, suitTemp, 10));                      
             }
