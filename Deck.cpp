@@ -19,7 +19,7 @@ Card::Card(string cardFace, string cardSuit, int cardValue){
 
 //prints card face and suit
 void Card::printCard(){
-    cout << face << " of " << suit << endl;
+    cout << face << " of " << suit << " (" << value << ")" << endl;    
 } 
 
 //returns card value
@@ -33,7 +33,7 @@ void Card::ace(int num){
 }
 
 //creates a 52 card deck
-Deck::Deck() 
+Deck::Deck()
     :shuffle_seed(chrono::system_clock::now().time_since_epoch().count()) {
     
     string faces[] = {"Ace", "Deuce", "Trey", "Four", "Five", "Six", "Seven", 
