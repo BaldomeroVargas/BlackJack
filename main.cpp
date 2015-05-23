@@ -1,3 +1,4 @@
+//adjust problem with ace on first draw!!
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -16,7 +17,6 @@ void game_start(vector<Player> & p, int players, Deck game_deck, int & totalDraw
 void turn(Player& current, string & command, int& number_drawn, Deck game_deck);
 void dealer_turn(Player& current, int& number_drawn, Deck game_deck, int max);
 void sort_display(vector<Player> & final, vector<Player> & p, int players);
-
 
 
 int main(int argc, char* argv[]){
@@ -133,7 +133,6 @@ void sort_display(vector<Player> & final, vector<Player> & p, int players){
     for(int x = 0; x < players; ++x){
         for(int i = 0; i < players; ++i){
             if(i == players - 1){
-                // cout << "WELP" << endl;
                 break;
             }
             else{
@@ -182,7 +181,8 @@ void dealer_turn(Player& current, int& number_drawn, Deck game_deck, int max){
             break;
         }
         else{
-            current.player_hand(game_deck.draw_card(number_drawn));
+            int x = 0;
+            current.player_hand(game_deck.draw_card(number_drawn), x);
             get_in(command, "Please enter any key to simulate dealer drawing: "); 
             current.display(); current.display_hand();            
         }
@@ -215,7 +215,8 @@ void game_start(vector<Player> & p, int players, Deck game_deck, int & totalDraw
         //updates for player drawn card 
         //updates hand total and cards in hand
         for(int i = 0; i < players;++i){
-            p.at(i).player_hand(game_deck.draw_card(totalDrawn));
+            int x = 0;
+            p.at(i).player_hand(game_deck.draw_card(totalDrawn), x);
         }   
     }
 }
@@ -256,7 +257,7 @@ void obtain_players_name(vector<Player> & p, int &players){
 //creates the players
 void get_players(string &response, int& players){
     //loop securing a proper response
-    while(response != "Yes" && response != "yes" && response != "No" && response !="no") {
+    while(response != "Yes" && response != "yes" && response != "No" && response !="no"){
         get_in(response, "What did you say? ");
     }
     

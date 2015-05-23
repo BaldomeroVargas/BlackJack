@@ -40,14 +40,15 @@ void Player::display_hand(){
 
 //updates players hand fully by putting 
 //card in hand and updating hand total
-void Player::player_hand(Card current){
+void Player::player_hand(Card current, int & prompt_check){
     //work on this!
     if(handTotal == 0){
         if(current.val_return() == 0){
             cout << "You have drawn "; current.printCard(); cout << endl;           
             int num;   
+            prompt_check = 1;
             do{
-                cout << "Would you like the ace to be worth 1 or 11? ";
+                cout << get_name(); cout << ", would you like the ace to be worth 1 or 11? ";
                 cin >> num; 
                 cout << endl;
             }while(num != 1 && num != 11);
@@ -59,10 +60,11 @@ void Player::player_hand(Card current){
     else{
         if(current.val_return() == 0){
             cout << "You have drawn "; current.printCard(); cout << endl;           
-            int num;   
+            int num; 
+            prompt_check = 1;            
             display_hand();
             do{
-                cout << "Would you like the ace to be worth 1 or 11? ";
+                cout << get_name(); cout << ", would you like the ace to be worth 1 or 11? ";
                 cin >> num; 
                 cout << endl;
             }while(num != 1 && num != 11);
@@ -91,9 +93,12 @@ bool Player::command_check(string command){
 //simulates single turn
 void Player::single_turn_display(int &number_drawn, string command, Deck game_deck){
     command_check(command);
+    int test_value = 0;
     if(!command_check(command)){
-        player_hand(game_deck.draw_card(number_drawn));
-        display(); display_hand();
+        player_hand(game_deck.draw_card(number_drawn), test_value);
+        if(test_value == 0){
+            display(); display_hand();        
+        }
         if(player_check()){
             cout << "You are eliminated from contention." << endl;
         }

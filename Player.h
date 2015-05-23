@@ -22,14 +22,12 @@ class Player
         string get_name() const;
         int get_hand();
         //adds to player hand
-        void player_hand(Card current);
+        void player_hand(Card current, int& prompt_check);
         void display_hand();     
-        //adds to player total
         void update_player_hand(Card current);
         //checks if player is still in the game
         bool player_check();
         bool command_check(string command);
-        //simulates a single turn for player
         void single_turn_display(int &number_drawn, string command, Deck game_deck);
         bool player_status();
     
