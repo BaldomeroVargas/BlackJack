@@ -1,11 +1,9 @@
-//adjust problem with ace on first draw!!
 #include <iostream>
 #include <vector>
 #include <fstream>
 #include <cstdlib>
 #include "Player.h"
 #include "Deck.h"
-#include "Interface.h"
 using namespace std;
 
 template <typename T>
@@ -216,10 +214,13 @@ void game_start(vector<Player> & p, int players, Deck game_deck, int & totalDraw
         //updates hand total and cards in hand
         for(int i = 0; i < players;++i){
             int x = 0;
-            p.at(i).player_hand(game_deck.draw_card(totalDrawn), x);
+            p.at(i).start_draw(game_deck.draw_card(totalDrawn));
         }   
     }
-}
+    for(int i = 0; i < players; ++i){
+        p.at(i).start_finalize();
+    }
+} 
 
 //secures a proper response to a move
 void get_command(string& command){

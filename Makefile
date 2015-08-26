@@ -1,7 +1,7 @@
 COMP=g++
 FLAGS=-g
 
-all: player deck interface
+all: player deck
 	$(COMP) $(FLAGS) -std=c++11 main.cpp -o black.out Player.o Deck.o
 	
 main:
@@ -13,11 +13,8 @@ player:
 deck:
 	$(COMP) $(FLAGS) -std=c++11 -c Deck.cpp
 	
-interface:
-	$(COMP) $(FLAGS) -std=c++11 -c Interface.cpp
-	
 clean:
-	rm -fv Interface.o Player.o Deck.o black.out
+	rm -fv Player.o Deck.o black.out
 	
 run:
 	./black.out

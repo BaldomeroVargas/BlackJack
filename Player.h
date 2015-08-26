@@ -14,6 +14,7 @@ class Player
         vector<Card> hand;
         //checks if the player is playing        
         bool status;
+        int initial_ace_check;
     
     public:
     
@@ -21,6 +22,7 @@ class Player
         void display();
         string get_name() const;
         int get_hand();
+        int get_initial_ace_check();       
         //adds to player hand
         void player_hand(Card current, int& prompt_check);
         void display_hand();     
@@ -30,6 +32,8 @@ class Player
         bool command_check(string command);
         void single_turn_display(int &number_drawn, string command, Deck game_deck);
         bool player_status();
+        void start_draw(Card Current);
+        void start_finalize();
     
 };
 

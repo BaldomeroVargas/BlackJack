@@ -12,6 +12,7 @@ Player::Player(string user){
     name = user;
     handTotal = 0;
     status = false;
+    initial_ace_check = 0;
 }
 
 //obtains name of player
@@ -22,6 +23,10 @@ string Player::get_name() const{
 //obtains hand of player
 int Player::get_hand(){
     return handTotal;
+}
+
+int Player::get_initial_ace_check(){
+    return initial_ace_check;
 }
 
 //outputs player and hand total
@@ -41,38 +46,85 @@ void Player::display_hand(){
 //updates players hand fully by putting 
 //card in hand and updating hand total
 void Player::player_hand(Card current, int & prompt_check){
-    //work on this!
-    if(handTotal == 0){
-        if(current.val_return() == 0){
-            cout << "You have drawn "; current.printCard(); cout << endl;           
-            int num;   
-            prompt_check = 1;
-            do{
-                cout << get_name(); cout << ", would you like the ace to be worth 1 or 11? ";
-                cin >> num; 
-                cout << endl;
-            }while(num != 1 && num != 11);
+
+    if(current.val_return() == 0){
+        if(name == "Dealer"){
+            int num = 11;
             current.ace(num);
-        }
-        hand.push_back(current);
-        update_player_hand(current);        
+            hand.push_back(current);
+            update_player_hand(current);             
+            return;
+        }        
+        cout << "You have drawn "; current.printCard(); cout << endl;           
+        int num; 
+        prompt_check = 1;            
+        display_hand();
+        do{
+            cout << get_name(); cout << ", would you like the ace to be worth 1 or 11? ";
+            cin >> num; 
+            cout << endl;
+        }while(num != 1 && num != 11);
+        current.ace(num);
+    }
+    hand.push_back(current);
+    update_player_hand(current);         
+
+}
+
+//draws hand for the initial 2 draws
+void Player::start_draw(Card current){
+    if(current.val_return() == 0){
+        initial_ace_check -= 1;
     }
     else{
-        if(current.val_return() == 0){
-            cout << "You have drawn "; current.printCard(); cout << endl;           
+        initial_ace_check += 1;
+    }
+    hand.push_back(current);
+    update_player_hand(current);     
+}
+
+void Player::start_finalize(){
+    if( initial_ace_check <= 0){
+        if(name == "Dealer"){
+            int num = 11;
+            for(int i = 0; i < 2; ++i){
+                if(hand.at(i).val_return() == 0){
+                    handTotal += num;
+                    hand.at(i).ace(num);     
+                }
+            }   
+            return;
+        }
+        cout << measuringStick << endl;
+        if(initial_ace_check == -2){
+            display_hand();                
+            for(int i = 0; i < 2; ++i){
+                int num; 
+                do{
+                    cout << name; cout << ", would you like the first ace to be worth 1 or 11? ";
+                    cin >> num; 
+                    cout << endl;
+                }while(num != 1 && num != 11);
+                handTotal += num;
+                hand.at(i).ace(num);
+            }
+        }
+        else{
             int num; 
-            prompt_check = 1;            
             display_hand();
             do{
-                cout << get_name(); cout << ", would you like the ace to be worth 1 or 11? ";
+                cout << name; cout << ", would you like the ace to be worth 1 or 11? ";
                 cin >> num; 
                 cout << endl;
             }while(num != 1 && num != 11);
-            current.ace(num);
+                handTotal += num;
+                for(int i = 0; i < 2; ++i){
+                    if(hand.at(i).val_return() == 0){
+                        hand.at(i).ace(num);     
+                    }
+                }
         }
-        hand.push_back(current);
-        update_player_hand(current);         
-    }
+    }    
 }
 
 //updates players hand by updating hand total
