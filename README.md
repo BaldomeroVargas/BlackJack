@@ -10,7 +10,8 @@ Play the game like normal just through terminal!
 Open ternimal and do the following commands
 
 ```
-$ git clone https://github.com/BaldomeroVargas/BlackJack
+$ git clone https://github.com/BaldomeroVargas/BlackJack.git
+$ cd BlackJack
 $ make
 $ ./black.out
 ```
